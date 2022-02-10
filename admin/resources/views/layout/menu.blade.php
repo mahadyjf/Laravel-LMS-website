@@ -1,5 +1,5 @@
 <div id="main-wrapper">
-        <header class="topbar">
+        <header class="topbar" style="margin-top: -25px;">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <div class="navbar-collapse">
                     <ul class="navbar-nav mr-auto mt-md-0">
@@ -8,7 +8,7 @@
                      <li class="nav-item mt-3">ADMIN</li>
 					</ul>
                     <ul class="navbar-nav my-lg-0">
-                        <li class="nav-item"><a href="" class="btn btn-sm btn-danger">Logout</a></li>
+                        <li class="nav-item"><a href="{{url('/logout')}}" class="btn btn-sm btn-danger">Logout</a></li>
                     </ul>
                 </div>
             </nav>
@@ -29,6 +29,8 @@
                         <li> <a href="{{url('/contact')}}" ><span> <i class="fas fa-envelope"></i> </span><span class="hide-menu">Contact</span></a></li>
 
                         <li> <a href="{{url('/review')}}" ><span> <i class="fas fa-star"></i> </span><span class="hide-menu">Review</span></a></li>
+
+                        <li> <a href="{{url('/photo')}}" ><span> <i class="fas fa-image"></i> </span><span class="hide-menu">Photo Gallery</span></a></li>
 					</ul>
                 </nav>
             </div>

@@ -8,6 +8,8 @@ use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PhotoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,43 +21,56 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
-Route::get('/', [HomeController::class,'HomeIndex']);
-Route::get('/visitor', [VisitorController::class,'VisitorIndex']);
+Route::get('/', [HomeController::class,'HomeIndex'])->middleware('loginCheck');
+Route::get('/visitor', [VisitorController::class,'VisitorIndex'])->middleware('loginCheck');
 
 //Admin panel Service Section
-Route::get('/service', [ServiceController::class,'ServiceIndex']);
-Route::get('/GetServiceData', [ServiceController::class,'GetServiceData']);
-Route::post('/ServiceDelete', [ServiceController::class,'ServiceDelete']);
-Route::post('/ServiceDetails', [ServiceController::class,'GetServiceDetails']);
-Route::post('/ServiceUpdate', [ServiceController::class,'ServiceUpdate']);
-Route::post('/ServiceAdd', [ServiceController::class,'ServiceAdd']);
+Route::get('/service', [ServiceController::class,'ServiceIndex'])->middleware('loginCheck');
+Route::get('/GetServiceData', [ServiceController::class,'GetServiceData'])->middleware('loginCheck');
+Route::post('/ServiceDelete', [ServiceController::class,'ServiceDelete'])->middleware('loginCheck');
+Route::post('/ServiceDetails', [ServiceController::class,'GetServiceDetails'])->middleware('loginCheck');
+Route::post('/ServiceUpdate', [ServiceController::class,'ServiceUpdate'])->middleware('loginCheck');
+Route::post('/ServiceAdd', [ServiceController::class,'ServiceAdd'])->middleware('loginCheck');
 
 //Admin panel Courses Section
-Route::get('/courses', [CoursesController::class,'CoursesIndex']);
-Route::get('/GetCoursesData', [CoursesController::class,'GetCoursesData']);
-Route::post('/CourseDelete', [CoursesController::class,'CourseDelete']);
-Route::post('/CourseDetails', [CoursesController::class,'GetCourseDetails']);
-Route::post('/CourseUpdate', [CoursesController::class,'CourseUpdate']);
-Route::post('/CourseAdd', [CoursesController::class,'CourseAdd']);
+Route::get('/courses', [CoursesController::class,'CoursesIndex'])->middleware('loginCheck');
+Route::get('/GetCoursesData', [CoursesController::class,'GetCoursesData'])->middleware('loginCheck');
+Route::post('/CourseDelete', [CoursesController::class,'CourseDelete'])->middleware('loginCheck');
+Route::post('/CourseDetails', [CoursesController::class,'GetCourseDetails'])->middleware('loginCheck');
+Route::post('/CourseUpdate', [CoursesController::class,'CourseUpdate'])->middleware('loginCheck');
+Route::post('/CourseAdd', [CoursesController::class,'CourseAdd'])->middleware('loginCheck');
 
 //Admin panel Project Section
-Route::get('/project', [ProjectController::class,'ProjectIndex']);
-Route::get('/GetProjectsData', [ProjectController::class,'GetProjectData']);
-Route::post('/ProjectDelete', [ProjectController::class,'ProjectDelete']);
-Route::post('/ProjectDetails', [ProjectController::class,'GetProjectDetails']);
-Route::post('/ProjectUpdate', [ProjectController::class,'ProjectUpdate']);
-Route::post('/ProjectAdd', [ProjectController::class,'ProjectAdd']);
+Route::get('/project', [ProjectController::class,'ProjectIndex'])->middleware('loginCheck');
+Route::get('/GetProjectsData', [ProjectController::class,'GetProjectData'])->middleware('loginCheck');
+Route::post('/ProjectDelete', [ProjectController::class,'ProjectDelete'])->middleware('loginCheck');
+Route::post('/ProjectDetails', [ProjectController::class,'GetProjectDetails'])->middleware('loginCheck');
+Route::post('/ProjectUpdate', [ProjectController::class,'ProjectUpdate'])->middleware('loginCheck');
+Route::post('/ProjectAdd', [ProjectController::class,'ProjectAdd'])->middleware('loginCheck');
 
 
 //Admin panel Contact Section
-Route::get('/contact', [ContactController::class,'ContactIndex']);
-Route::get('/GetContactData', [ContactController::class,'GetContactData']);
-Route::post('/ContactDelete', [ContactController::class,'ContactDelete']);
+Route::get('/contact', [ContactController::class,'ContactIndex'])->middleware('loginCheck');
+Route::get('/GetContactData', [ContactController::class,'GetContactData'])->middleware('loginCheck');
+Route::post('/ContactDelete', [ContactController::class,'ContactDelete'])->middleware('loginCheck');
 
 //Admin panel Project Section
-Route::get('/review', [ReviewController::class,'ReviewIndex']);
-Route::get('/GetReviewsData', [ReviewController::class,'GetReviewData']);
-Route::post('/ReviewDelete', [ReviewController::class,'ReviewDelete']);
-Route::post('/ReviewDetails', [ReviewController::class,'GetReviewDetails']);
-Route::post('/ReviewUpdate', [ReviewController::class,'ReviewUpdate']);
-Route::post('/ReviewAdd', [ReviewController::class,'ReviewAdd']);
+Route::get('/review', [ReviewController::class,'ReviewIndex'])->middleware('loginCheck');
+Route::get('/GetReviewsData', [ReviewController::class,'GetReviewData'])->middleware('loginCheck');
+Route::post('/ReviewDelete', [ReviewController::class,'ReviewDelete'])->middleware('loginCheck');
+Route::post('/ReviewDetails', [ReviewController::class,'GetReviewDetails'])->middleware('loginCheck');
+Route::post('/ReviewUpdate', [ReviewController::class,'ReviewUpdate'])->middleware('loginCheck');
+Route::post('/ReviewAdd', [ReviewController::class,'ReviewAdd'])->middleware('loginCheck');
+
+//login
+Route::get('/loginpage', [LoginController::class,'LoginIndex']);
+Route::post('/login', [LoginController::class,'onLogin']);
+Route::get('/logout', [LoginController::class,'onLogOut']);
+
+//photo gellary
+Route::get('/photo', [PhotoController::class,'PhotoIndex']);
+Route::post('/PhotoUpload', [PhotoController::class,'PhotoUpload']);
+Route::get('/photoJson', [PhotoController::class,'photoJson']);
+
+Route::get('/photoJsonByID/{id}', [PhotoController::class,'photoJsonByID']);
+Route::post('/photoDelete', [PhotoController::class,'photoDelete']);
